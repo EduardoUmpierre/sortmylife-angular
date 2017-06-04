@@ -25,8 +25,4 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
 
-<<<<<<< HEAD
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
->>>>>>> a9b748eb023d0be65854fb4c913de5c5d3aef78c
