@@ -34,4 +34,19 @@ export class BooksService {
         return this.books;
     }
 
+    getOneByIndex(index: number) {
+        return this.books[index];
+    }
+
+    add(book: Book) {
+        this.books.unshift(book);
+    }
+
+    update(book: Book, index: number) {
+        this.books[index] = book;
+    }
+
+    delete(index: number) {
+        this.books.splice(index - 1, 1);
+    }
 }
