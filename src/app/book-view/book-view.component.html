@@ -1,0 +1,36 @@
+<div class="row book-view__container">
+    <div class="col-xs-12 col-sm-4">
+        <div class="book-image" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}"></div>
+        <div class="rating">Nota: {{ book.rating }}/5</div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8">
+        <h3>{{ book.title }}</h3>
+        <h4>{{ book.author }} - {{ book.year }}</h4>
+
+        <p>{{ book.description }}</p>
+    </div>
+</div>
+
+<div class="row book-view__button-group">
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a (click)="edit(index)" class="btn btn-default">Editar</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a (click)="delete(index)" class="btn btn-default">Excluir</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a href="#" class="btn btn-default">Já li</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a href="#" class="btn btn-default">Quero ler</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a href="#" class="btn btn-default">Favoritar</a>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2">
+        <a class="btn btn-default" disabled>Comentários</a>
+    </div>
+</div>
+
+<app-book-list></app-book-list>
