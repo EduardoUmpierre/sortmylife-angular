@@ -20,17 +20,19 @@
         <a (click)="delete(index)" class="btn btn-default">Excluir</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a href="#" class="btn btn-default">Já li</a>
+        <a (click)="toggleReaded()" class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a href="#" class="btn btn-default">Quero ler</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a href="#" class="btn btn-default">Favoritar</a>
+        <a (click)="toggleFavorite()" class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a class="btn btn-default" disabled>Comentários</a>
     </div>
 </div>
 
-<app-book-list></app-book-list>
+<app-book-list title="Livros sugeridos"></app-book-list>
+<app-book-list title="Livros lidos" type="readed"></app-book-list>
+<app-book-list title="Livros favoritados" type="favorite"></app-book-list>
