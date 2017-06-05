@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Lista de livros</h2>
+
+        <ul class="list-item row">
+            <li *ngFor="let book of books; let i = index" class="col-xs-6 col-sm-4 col-md-2">
+                <a (click)="view(i)" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}">
+                    <span class="list-item__overlay">
+                        <span class="list-item__container">
+                            <span class="list-item__author">{{ book.author }}</span>
+                            <span class="list-item__title">{{ book.title }}</span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
