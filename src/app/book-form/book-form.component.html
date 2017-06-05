@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Adicionar livro</h2>
+
+        <form action="#" #bookForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="title">Título</label>
+                        <input type="text" name="title" class="form-control" placeholder="Título do livro" id="title" [(ngModel)]="book.title" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="year">Ano</label>
+                        <input type="number" name="year" class="form-control" placeholder="Ano de lançamento" id="year" min="0" max="2017" [(ngModel)]="book.year" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="author">Autor</label>
+                        <input type="text" name="author" class="form-control" placeholder="Autor do livro" id="author" [(ngModel)]="book.author" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="rating">Classificação</label>
+                        <input type="number" name="rating" class="form-control" placeholder="Número de estrelas" min="0" max="5" id="rating" [(ngModel)]="book.rating" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
+                        <textarea name="description" class="form-control" id="description" [(ngModel)]="book.description" placeholder="Descrição do livro" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="image">Imagem (url)</label>
+                        <input type="text" name="image" class="form-control" placeholder="http://" id="image" [(ngModel)]="book.image" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">Salvar</button>
+                        <button type="submit" class="btn btn-default" (click)="bookForm.reset()">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
