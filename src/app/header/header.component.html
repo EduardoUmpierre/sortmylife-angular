@@ -1,7 +1,19 @@
 <header id="header">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>{{ title }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{ title }}</h1>
+            </div>
         </div>
+
+        <nav class="row">
+            <div class="col-xs-12">
+                <ul>
+                    <li><a routerLink="inicio">Início</a></li>
+                    <li><a routerLink="livro/novo">Adicionar livro</a></li>
+                    <li><a routerLink="categoria/novo">Adicionar categoria</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
