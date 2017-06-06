@@ -11,9 +11,9 @@ export class FavoriteBooksService {
         return this.favoriteBooks;
     }
 
-    getOneByObject(book: Book) {
-        for (let b in this.favoriteBooks) {
-            if (this.favoriteBooks[b] == book) {
+    hasOneById(id: number) {
+        for (const i in this.favoriteBooks) {
+            if (this.favoriteBooks[i].id == id) {
                 return true;
             }
         }
@@ -25,10 +25,10 @@ export class FavoriteBooksService {
         this.favoriteBooks.unshift(book);
     }
 
-    delete(book: Book) {
-        for (let b in this.favoriteBooks) {
-            if (this.favoriteBooks[b] == book) {
-                this.favoriteBooks.splice(parseInt(b, 0), 1);
+    delete(id: number) {
+        for (const i in this.favoriteBooks) {
+            if (this.favoriteBooks[i].id == id) {
+                this.favoriteBooks.splice(parseInt(i, 0), 1);
             }
         }
     }

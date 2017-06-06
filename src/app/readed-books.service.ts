@@ -11,9 +11,9 @@ export class ReadedBooksService {
         return this.readedBooks;
     }
 
-    getOneByObject(book: Book) {
-        for (let b in this.readedBooks) {
-            if (this.readedBooks[b] == book) {
+    hasOneById(id: number) {
+        for (const i in this.readedBooks) {
+            if (this.readedBooks[i].id == id) {
                 return true;
             }
         }
@@ -25,10 +25,10 @@ export class ReadedBooksService {
         this.readedBooks.unshift(book);
     }
 
-    delete(book: Book) {
-        for (let b in this.readedBooks) {
-            if (this.readedBooks[b] == book) {
-                this.readedBooks.splice(parseInt(b, 0), 1);
+    delete(id: number) {
+        for (const i in this.readedBooks) {
+            if (this.readedBooks[i].id == id) {
+                this.readedBooks.splice(parseInt(i, 0), 1);
             }
         }
     }

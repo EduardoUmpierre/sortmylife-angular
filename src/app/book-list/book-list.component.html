@@ -3,16 +3,18 @@
         <h2>{{ title }}</h2>
 
         <ul class="list-item row">
-            <li *ngFor="let book of books; let i = index" class="col-xs-6 col-sm-4 col-md-2">
-                <a (click)="view(i)" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}">
-                    <span class="list-item__overlay">
-                        <span class="list-item__container">
-                            <span class="list-item__author">{{ book.author }}</span>
-                            <span class="list-item__title">{{ book.title }}</span>
+            <ng-template ngFor let-book let-i="index" [ngForOf]="books">
+                <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="book">
+                    <a [routerLink]="['/livro', book.id]" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}">
+                        <span class="list-item__overlay">
+                            <span class="list-item__container">
+                                <span class="list-item__author">{{ book.author }}</span>
+                                <span class="list-item__title">{{ book.title }}</span>
+                            </span>
                         </span>
-                    </span>
-                </a>
-            </li>
+                    </a>
+                </li>
+            </ng-template>
         </ul>
     </div>
 </div>

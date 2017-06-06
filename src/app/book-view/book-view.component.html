@@ -14,16 +14,16 @@
 
 <div class="row book-view__button-group">
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="edit(index)" class="btn btn-default">Editar</a>
+        <a [routerLink]="['/livro/editar', book.id]" class="btn btn-default">Editar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="delete(index)" class="btn btn-default">Excluir</a>
+        <a (click)="delete()" class="btn btn-default">Excluir</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a (click)="toggleReaded()" class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a href="#" class="btn btn-default">Quero ler</a>
+        <a (click)="toggleWantToRead()" class="btn" [ngClass]="{'btn-primary': wantToRead, 'btn-default': !wantToRead}">Quero ler</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a (click)="toggleFavorite()" class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
@@ -34,5 +34,6 @@
 </div>
 
 <app-book-list title="Livros sugeridos"></app-book-list>
+<app-book-list title="Livros que quero ler" type="wantToRead"></app-book-list>
 <app-book-list title="Livros lidos" type="readed"></app-book-list>
 <app-book-list title="Livros favoritados" type="favorite"></app-book-list>

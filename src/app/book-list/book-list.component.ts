@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BooksService } from 'app/books.service';
 import { FavoriteBooksService } from 'app/favorite-books.service';
 import { ReadedBooksService } from 'app/readed-books.service';
+import { WantToReadBooksService } from 'app/want-to-read-books.service';
 import { Book } from 'app/book';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-book-list',
@@ -11,18 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./book-list.component.sass']
 })
 export class BookListComponent implements OnInit {
-    @Input() title: string = 'Lista de livros';
+    @Input() title: string;
     @Input() type: string;
 
     service: any;
     books: Book[];
 
     constructor (
-        private route: ActivatedRoute,
-        private router: Router,
         private booksService: BooksService,
         private favoriteBooksService: FavoriteBooksService,
-        private readedBooksService: ReadedBooksService
+        private readedBooksService: ReadedBooksService,
+        private wantToReadBooksService: WantToReadBooksService
     ) {}
 
     ngOnInit() {
@@ -35,15 +34,15 @@ export class BookListComponent implements OnInit {
                 this.service = this.readedBooksService;
                 break;
             }
+            case 'wantToRead': {
+                this.service = this.wantToReadBooksService;
+                break;
+            }
             default: {
                 this.service = this.booksService;
             }
         }
 
         this.books = this.service.getAll();
-    }
-
-    view(index: number) {
-        this.router.navigate(['livro', index + 1]);
     }
 }

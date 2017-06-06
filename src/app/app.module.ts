@@ -14,13 +14,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { HomeComponent } from './home/home.component';
+import { WantToReadBooksService } from './want-to-read-books.service';
 
 const appRoute: Routes = [
     {path: '', redirectTo: 'inicio', pathMatch: 'full'},
     {path: 'inicio', component: HomeComponent},
     {path: 'livro/novo', component: BookFormComponent},
-    {path: 'livro/editar/:index', component: BookFormComponent},
-    {path: 'livro/:index', component: BookViewComponent},
+    {path: 'livro/editar/:id', component: BookFormComponent},
+    {path: 'livro/:id', component: BookViewComponent},
 ];
 
 @NgModule({
@@ -42,6 +43,7 @@ const appRoute: Routes = [
         BooksService,
         FavoriteBooksService,
         ReadedBooksService,
+        WantToReadBooksService,
     ],
     bootstrap: [AppComponent]
 })

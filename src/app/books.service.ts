@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Book } from 'app/book';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BooksService {
 
     books: Book[] = [
         {
+            id: 1,
             title: 'Admirável Mundo Novo',
             rating: 5,
             author: 'Aldous Huxley',
@@ -17,6 +19,7 @@ export class BooksService {
             year: 1932,
         },
         {
+            id: 2,
             title: 'O Mundo de Sofia',
             rating: 5,
             author: 'Jostein Gaarder',
@@ -28,25 +31,46 @@ export class BooksService {
         }
     ];
 
-    constructor() { }
+    constructor(
+        private router: Router
+    ) { }
 
     getAll() {
         return this.books;
     }
 
-    getOneByIndex(index: number) {
-        return this.books[index];
+    getTotalItems() {
+        return this.books.length;
+    }
+
+    getOneById(id: number) {
+        for (const i in this.books) {
+            if (this.books[i].id == id) {
+                return this.books[i];
+            }
+        }
+
+        this.router.navigate(['inicio']);
     }
 
     add(book: Book) {
+        book.id = this.getTotalItems() + 1;
         this.books.unshift(book);
     }
 
-    update(book: Book, index: number) {
-        this.books[index] = book;
+    update(book: Book) {
+        for (const i in this.books) {
+            if (this.books[i].id == book.id) {
+                this.books[i] = book;
+            }
+        }
     }
 
-    delete(index: number) {
-        this.books.splice(index - 1, 1);
+    delete(id: number) {
+        for (const i in this.books) {
+            if (this.books[i].id == id) {
+                this.books.splice(parseInt(i, 0), 1);
+            }
+        }
     }
 }
