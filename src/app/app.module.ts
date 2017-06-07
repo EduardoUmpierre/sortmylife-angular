@@ -16,6 +16,7 @@ import { BookListComponent } from './book/book-list/book-list.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { BookViewComponent } from './book/book-view/book-view.component';
 import { HomeComponent } from './home/home.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './home/home.component';
         BookListComponent,
         BookFormComponent,
         BookViewComponent,
-        HomeComponent
+        HomeComponent,
+        MovieComponent
     ],
     imports: [
         BrowserModule,
