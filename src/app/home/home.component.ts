@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteBooksService } from 'app/favorite-books.service';
+import { FavoriteBooksService } from 'app/book/favorite-books.service';
 
 @Component({
     selector: 'app-home',

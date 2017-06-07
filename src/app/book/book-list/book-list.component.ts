@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BooksService } from 'app/books.service';
-import { FavoriteBooksService } from 'app/favorite-books.service';
-import { ReadedBooksService } from 'app/readed-books.service';
-import { WantToReadBooksService } from 'app/want-to-read-books.service';
-import { Book } from 'app/book';
+import { BooksService } from 'app/book/books.service';
+import { FavoriteBooksService } from 'app/book/favorite-books.service';
+import { ReadedBooksService } from 'app/book/readed-books.service';
+import { WantToReadBooksService } from 'app/book/want-to-read-books.service';
+import { Book } from 'app/book/book';
 
 @Component({
     selector: 'app-book-list',

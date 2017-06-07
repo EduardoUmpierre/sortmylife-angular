@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Book } from 'app/book';
 import { Router } from '@angular/router';
+
+import { Book } from './book';
 
 @Injectable()
 export class BooksService {
