@@ -34,7 +34,7 @@ export class MovieListComponent implements OnInit {
       }
     }
 
-    this.movies = this.service.getAll();
+    this.movies = this.service.getAllMovie();
   }
 
 }

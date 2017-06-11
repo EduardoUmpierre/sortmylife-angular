@@ -17,6 +17,9 @@ import { BookFormComponent } from './book/book-form/book-form.component';
 import { BookViewComponent } from './book/book-view/book-view.component';
 import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie.component';
+import {MovieService} from "./movie/movie.service";
+import {MovieFavoriteService} from "./movie/movie-favorite/movie-favorite.service";
+import {MovieListComponent} from "./movie/movie-list/movie-list.component";
 
 @NgModule({
     declarations: [
@@ -26,7 +29,8 @@ import { MovieComponent } from './movie/movie.component';
         BookFormComponent,
         BookViewComponent,
         HomeComponent,
-        MovieComponent
+        MovieComponent,
+        MovieListComponent
     ],
     imports: [
         BrowserModule,
@@ -39,6 +43,8 @@ import { MovieComponent } from './movie/movie.component';
         FavoriteBooksService,
         ReadedBooksService,
         WantToReadBooksService,
+        MovieService,
+        MovieFavoriteService
     ],
     bootstrap: [AppComponent]
 })

@@ -9,11 +9,12 @@ import {MovieFavoriteService} from "../movie/movie-favorite/movie-favorite.servi
     styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-    favoriteService: FavoriteBooksService = this.favoriteBooksService;
+    favoriteBookService: FavoriteBooksService = this.favoriteBooksService;
+    favoriteMovieService: MovieFavoriteService = this.movieFavoriteService;
 
     constructor(
         private favoriteBooksService: FavoriteBooksService,
-        private movireFavoriteService: MovieFavoriteService
+        private movieFavoriteService: MovieFavoriteService
     ) { }
 
     ngOnInit() {
