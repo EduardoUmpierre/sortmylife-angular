@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import {MovieService} from "./movie.service";
 import { MovieFormComponent } from './movie-form/movie-form.component';
+import { MovieFavoriteComponent } from './movie-favorite/movie-favorite.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [MovieFormComponent],
+  declarations: [MovieFormComponent, MovieFavoriteComponent, MovieListComponent],
   providers:[
       MovieService
   ]
