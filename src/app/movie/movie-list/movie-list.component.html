@@ -1,20 +1,20 @@
 <div class="row" *ngIf="movies && movies.length > 0">
-  <div class="col-xs-12">
-    <h2>{{ title }}</h2>
+    <div class="col-xs-12">
+        <h2>{{ title }}</h2>
 
-    <ul class="list-item row">
-      <ng-template ngFor let-book let-i="index" [ngForOf]="movies">
-        <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="movie">
-          <a [routerLink]="['/filme', movie.id]" [ngStyle]="{ 'background-image': 'url(' + movie.image + ')'}">
+        <ul class="list-item row">
+            <ng-template ngFor let-movies let-i="index" [ngForOf]="movies">
+                <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="movie">
+                    <a [routerLink]="['/livro', movie.id]" [ngStyle]="{ 'background-image': 'url(' + movie.image + ')'}">
                         <span class="list-item__overlay">
                             <span class="list-item__container">
                                 <span class="list-item__author">{{ movie.author }}</span>
                                 <span class="list-item__title">{{ movie.title }}</span>
                             </span>
                         </span>
-          </a>
-        </li>
-      </ng-template>
-    </ul>
-  </div>
+                    </a>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
 </div>

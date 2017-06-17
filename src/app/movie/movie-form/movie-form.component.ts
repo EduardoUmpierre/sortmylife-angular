@@ -1,41 +1,54 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
-
-import {MovieService} from "../movie.service";
+import { Component, OnInit } from '@angular/core';
+import { Movie } from 'app/movie/movie';
+import { MoviesService } from 'app/movie/movies.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-movie-form',
-  templateUrl: './movie-form.component.html',
-  styleUrls: ['./movie-form.component.sass']
+    selector: 'app-movie-form',
+    templateUrl: './movie-form.component.html',
+    styleUrls: ['./movie-form.component.sass']
 })
 export class MovieFormComponent implements OnInit {
+    editing = false;
+    id: number;
+    movie: Movie;
 
-  movie: any = {};
-  inscription: Subscription;
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private service: MoviesService
+    ) { }
 
-  constructor(
-      private route: ActivatedRoute,
-      private movieService: MovieService
-  ) { }
+    ngOnInit() {
+        this.id = this.route.snapshot.params['id'];
 
-  ngOnInit() {
-    this.inscription = this.route.params.subscribe(
-        (params: any) =>{
-          let id = params['id'];
-
-          this.movie = this.movieService.getMovie(id);
-
-          if(this.movie === null){
-            this.movie = {};
-          }
-
+        if (isNaN(this.id)) {
+            this.movie = new Movie();
+        } else {
+            this.editing = true;
+            this.movie = Object.assign({}, this.service.getOneById(this.id));
         }
-    );
-  }
+    }
 
-  ngOnDestroy(){
-    this.inscription.unsubscribe();
-  }
+    onSubmit() {
+        if (this.editing) {
+            this.updateMovie();
 
+            this.editing = false;
+        } else {
+            this.newMovie();
+        }
+    }
+
+    updateMovie() {
+        this.service.update(this.movie);
+
+        this.router.navigate(['inicio']);
+    }
+
+    newMovie() {
+        this.service.add(this.movie);
+
+        this.router.navigate(['inicio']);
+    }
 }

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieFormComponent } from './movie-form.component';
 
-describe('MovieFormComponent', () => {
+describe('BookFormComponent', () => {
   let component: MovieFormComponent;
   let fixture: ComponentFixture<MovieFormComponent>;
 

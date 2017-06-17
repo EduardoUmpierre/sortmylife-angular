@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {AppRoutingModule} from "./app.routing.module";
+import {AppRoutingModule} from './app.routing.module';
 
 import { BooksService } from './book/books.service';
 import { FavoriteBooksService } from './book/favorite-books.service';
@@ -16,10 +16,13 @@ import { BookListComponent } from './book/book-list/book-list.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { BookViewComponent } from './book/book-view/book-view.component';
 import { HomeComponent } from './home/home.component';
-import { MovieComponent } from './movie/movie.component';
-import {MovieService} from "./movie/movie.service";
-import {MovieFavoriteService} from "./movie/movie-favorite/movie-favorite.service";
-import {MovieListComponent} from "./movie/movie-list/movie-list.component";
+import {MovieListComponent} from './movie/movie-list/movie-list.component';
+import {MovieFormComponent} from './movie/movie-form/movie-form.component';
+import {MovieViewComponent} from './movie/movie-view/movie-view.component';
+import {FavoriteMoviesService} from './movie/favorite-movies.service';
+import {ReadedMoviesService} from './movie/readed-movies.service';
+import {WantToReadMoviesService} from './movie/want-to-read-movies.service';
+import {MoviesService} from './movie/movies.service';
 
 @NgModule({
     declarations: [
@@ -29,8 +32,9 @@ import {MovieListComponent} from "./movie/movie-list/movie-list.component";
         BookFormComponent,
         BookViewComponent,
         HomeComponent,
-        MovieComponent,
-        MovieListComponent
+        MovieListComponent,
+        MovieFormComponent,
+        MovieViewComponent
     ],
     imports: [
         BrowserModule,
@@ -40,11 +44,13 @@ import {MovieListComponent} from "./movie/movie-list/movie-list.component";
     ],
     providers: [
         BooksService,
+        MoviesService,
         FavoriteBooksService,
         ReadedBooksService,
         WantToReadBooksService,
-        MovieService,
-        MovieFavoriteService
+        FavoriteMoviesService,
+        ReadedMoviesService,
+        WantToReadMoviesService,
     ],
     bootstrap: [AppComponent]
 })

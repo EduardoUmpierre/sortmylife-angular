@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FavoriteBooksService } from 'app/book/favorite-books.service';
-import {MovieFavoriteService} from "../movie/movie-favorite/movie-favorite.service";
+import {FavoriteMoviesService} from '../movie/favorite-movies.service';
 
 @Component({
     selector: 'app-home',
@@ -10,11 +10,11 @@ import {MovieFavoriteService} from "../movie/movie-favorite/movie-favorite.servi
 })
 export class HomeComponent implements OnInit {
     favoriteBookService: FavoriteBooksService = this.favoriteBooksService;
-    favoriteMovieService: MovieFavoriteService = this.movieFavoriteService;
+    favoriteMovieService: FavoriteMoviesService = this.favoriteMoviesService;
 
     constructor(
         private favoriteBooksService: FavoriteBooksService,
-        private movieFavoriteService: MovieFavoriteService
+        private favoriteMoviesService: FavoriteMoviesService
     ) { }
 
     ngOnInit() {

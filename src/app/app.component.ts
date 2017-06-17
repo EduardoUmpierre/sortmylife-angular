@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 import { Book } from 'app/book/book';
-import {Movie} from "./movie/movie";
+import {Movie} from './movie/movie';
 
 import { BooksService } from 'app/book/books.service';
-import { MovieService } from "./movie/movie.service";
+import { MoviesService } from './movie/movies.service';
 
 @Component({
     selector: 'app-root',
@@ -16,9 +16,9 @@ export class AppComponent {
     movie: Movie[];
 
     constructor (private booksService: BooksService,
-                    private movieService: MovieService
+                    private moviesService: MoviesService
     ) {
         this.books = this.booksService.getAll();
-        this.movie = this.movieService.getAllMovie();
+        this.movie = this.moviesService.getAll();
     }
 }
