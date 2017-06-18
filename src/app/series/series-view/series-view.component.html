@@ -1,20 +1,20 @@
-<div class="row movie-view__container">
+<div class="row series-view__container">
     <div class="col-xs-12 col-sm-4">
-        <div class="movie-image" [ngStyle]="{ 'background-image': 'url(' + movie.image + ')'}"></div>
-        <div class="rating">Nota: {{ movie.rating }}/5</div>
+        <div class="series-image" [ngStyle]="{ 'background-image': 'url(' + series.image + ')'}"></div>
+        <div class="rating">Nota: {{ series.rating }}/5</div>
     </div>
 
     <div class="col-xs-12 col-sm-8">
-        <h3>{{ movie.title }}</h3>
-        <h4>{{ movie.author }} - {{ movie.year }}</h4>
+        <h3>{{ series.title }}</h3>
+        <h4>{{ series.author }} - {{ series.year }}</h4>
 
-        <p>{{ movie.description }}</p>
+        <p>{{ series.description }}</p>
     </div>
 </div>
 
-<div class="row movie-view__button-group">
+<div class="row series-view__button-group">
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a [routerLink]="['/livro/editar', movie.id]" class="btn btn-default">Editar</a>
+        <a [routerLink]="['/livro/editar', series.id]" class="btn btn-default">Editar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a (click)="delete()" class="btn btn-default">Excluir</a>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<app-movie-list title="Filmes sugeridos"></app-movie-list>
-<app-movie-list title="Filmes que quero ler" type="wantToRead"></app-movie-list>
-<app-movie-list title="Filmes lidos" type="readed"></app-movie-list>
-<app-movie-list title="Filmes favoritados" type="favorite"></app-movie-list>
+<app-series-list title="Séries sugeridas"></app-series-list>
+<app-series-list title="Séries que quero ler" type="wantToRead"></app-series-list>
+<app-series-list title="Séries lidas" type="readed"></app-series-list>
+<app-series-list title="Séries favoritadas" type="favorite"></app-series-list>

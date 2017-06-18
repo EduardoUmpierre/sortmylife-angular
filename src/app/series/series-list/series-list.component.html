@@ -1,0 +1,20 @@
+<div class="row" *ngIf="series && series.length > 0">
+    <div class="col-xs-12">
+        <h2>{{ title }}</h2>
+
+        <ul class="list-item row">
+            <ng-template ngFor let-series let-i="index" [ngForOf]="series">
+                <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="series">
+                    <a [routerLink]="['/series', series.id]" [ngStyle]="{ 'background-image': 'url(' + series.image + ')'}">
+                        <span class="list-item__overlay">
+                            <span class="list-item__container">
+                                <span class="list-item__author">{{ series.author }}</span>
+                                <span class="list-item__title">{{ series.title }}</span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
+</div>

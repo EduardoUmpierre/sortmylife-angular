@@ -4,12 +4,12 @@
 
         <ul class="list-item row">
             <ng-template ngFor let-movies let-i="index" [ngForOf]="movies">
-                <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="movie">
-                    <a [routerLink]="['/livro', movie.id]" [ngStyle]="{ 'background-image': 'url(' + movie.image + ')'}">
+                <li class="col-xs-6 col-sm-4 col-md-2" *ngIf="movies">
+                    <a [routerLink]="['/filme', movies.id]" [ngStyle]="{ 'background-image': 'url(' + movies.image + ')'}">
                         <span class="list-item__overlay">
                             <span class="list-item__container">
-                                <span class="list-item__author">{{ movie.author }}</span>
-                                <span class="list-item__title">{{ movie.title }}</span>
+                                <span class="list-item__author">{{ movies.author }}</span>
+                                    <span class="list-item__title">{{ movies.title }}</span>
                             </span>
                         </span>
                     </a>

@@ -23,6 +23,13 @@ import {FavoriteMoviesService} from './movie/favorite-movies.service';
 import {ReadedMoviesService} from './movie/readed-movies.service';
 import {WantToReadMoviesService} from './movie/want-to-read-movies.service';
 import {MoviesService} from './movie/movies.service';
+import {SeriesService} from "./series/series.service";
+import {WantToReadSeriesService} from "./series/want-to-read-series.service";
+import {ReadedSeriesService} from "./series/readed-series.service";
+import {FavoriteSeriesService} from "./series/favorite-series.service";
+import {SeriesViewComponent} from "./series/series-view/series-view.component";
+import {SeriesFormComponent} from "./series/series-form/series-form.component";
+import {SeriesListComponent} from "./series/series-list/series-list.component";
 
 @NgModule({
     declarations: [
@@ -34,7 +41,10 @@ import {MoviesService} from './movie/movies.service';
         HomeComponent,
         MovieListComponent,
         MovieFormComponent,
-        MovieViewComponent
+        MovieViewComponent,
+        SeriesListComponent,
+        SeriesFormComponent,
+        SeriesViewComponent,
     ],
     imports: [
         BrowserModule,
@@ -45,12 +55,16 @@ import {MoviesService} from './movie/movies.service';
     providers: [
         BooksService,
         MoviesService,
+        SeriesService,
         FavoriteBooksService,
         ReadedBooksService,
         WantToReadBooksService,
         FavoriteMoviesService,
         ReadedMoviesService,
         WantToReadMoviesService,
+        FavoriteSeriesService,
+        ReadedSeriesService,
+        WantToReadSeriesService,
     ],
     bootstrap: [AppComponent]
 })

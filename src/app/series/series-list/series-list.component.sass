@@ -1,0 +1,67 @@
+@import "../../../assets/_bootstrap"
+
+h2
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+    font-size: 1.6em
+    margin-bottom: 20px
+    padding-bottom: 15px
+
+.list-item
+    list-style: none
+    margin-top: 10px
+    overflow: hidden
+    padding: 0
+
+    > li
+        float: left
+
+        > a
+            background-position: center
+            background-repeat: no-repeat
+            background-size: cover
+            color: #FFF
+            cursor: pointer
+            display: block
+            font-size: 1.4em
+            height: 12vw
+            line-height: 1.25em
+            padding-bottom: 125%
+            position: relative
+            text-align: center
+            @include transition(background-color 300ms)
+            width: 100%
+
+            > .list-item__overlay
+                background-color: rgba(0, 0, 0, 0.8)
+                height: 100%
+                left: 0
+                opacity: 0
+                @include transition(opacity 400ms, visibility 400ms)
+                top: 0
+                visibility: hidden
+                position: absolute
+                width: 100%
+
+                > .list-item__container
+                    left: 0
+                    padding: 20px
+                    position: absolute
+                    top: 50%
+                    @include translate(0, -50%)
+                    width: 100%
+
+                    > .list-item__title
+                        display: block
+                        margin-top: 10px
+
+                    > .list-item__author
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.5)
+                        font-size: 0.600em
+                        padding-bottom: 5px
+
+            &:hover
+                text-decoration: none
+
+                > .list-item__overlay
+                    opacity: 1
+                    visibility: visible
