@@ -1,6 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import 'rxjs/add/operator/map';
 
+import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {BookFormComponent} from './book/book-form/book-form.component';
 import {BookViewComponent} from './book/book-view/book-view.component';
@@ -10,7 +12,8 @@ import {SeriesFormComponent} from './series/series-form/series-form.component';
 import {SeriesViewComponent} from './series/series-view/series-view.component';
 
 const appRoute: Routes = [
-    {path: '', redirectTo: 'inicio', pathMatch: 'full'},
+    //{path: '', redirectTo: 'inicio', pathMatch: 'full'},
+    {path: '', component: AppComponent},
     {path: 'inicio', component: HomeComponent},
     {path: 'livro/novo', component: BookFormComponent},
     {path: 'filme/novo', component: MovieFormComponent},
