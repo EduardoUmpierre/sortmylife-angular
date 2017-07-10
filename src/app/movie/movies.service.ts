@@ -1,43 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http, Response } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { Movie } from './movie';
 
 @Injectable()
 export class MoviesService {
+    movies: Movie[] = [];
 
-    movies: Movie[] = [
-        {
-            id: 1,
-            title: 'Admirável Mundo Novo',
-            rating: 5,
-            author: 'Aldous Huxley',
-            description: 'Admirável Mundo Novo (Brave New World na versão original em língua inglesa) é um romance ' +
-            'distópico escrito por Aldous Huxley e publicado em 1932 que narra um hipotético futuro onde as pessoas são ' +
-            'pré-condicionadas biologicamente e condicionadas psicologicamente a viverem em harmonia com as leis e regras ' +
-            'sociais, dentro de uma sociedade organizada por castas.',
-            image: 'https://amnprojeto.files.wordpress.com/2011/11/aldous.jpg',
-            year: 1932,
-        },
-        {
-            id: 2,
-            title: 'O Mundo de Sofia',
-            rating: 5,
-            author: 'Jostein Gaarder',
-            description: 'O Mundo de Sofia (Sofies verden em norueguês) é um romance escrito por Jostein Gaarder, ' +
-            'publicado em 1991. O livro foi escrito originalmente em norueguês, mas já foi traduzido para mais de 60 ' +
-            'línguas, teve sua primeira edição em português em 1995, que atualmente encontra-se em sua 32ª reimpressão.',
-            image: 'http://statics.livrariacultura.net.br/products/capas_lg/545/64545.jpg',
-            year: 1991,
+    constructor(private router: Router, private http: Http) {}
+
+    // Retorna todos os filmes
+    getAll(): Observable<Movie[]> {
+        return this.http.get('http://localhost:8888/filmes')
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+
+        console.log(body);
+
+        return body || { };
+    }
+
+    private handleError (error: Response | any) {
+        // In a real world app, you might use a remote logging infrastructure
+        let errMsg: string;
+
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
         }
-    ];
 
-    constructor(
-        private router: Router
-    ) { }
-
-    getAll() {
-        return this.movies;
+        console.error(errMsg);
+        return Observable.throw(errMsg);
     }
 
     getTotalItems() {

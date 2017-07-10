@@ -14,6 +14,7 @@ export class MovieListComponent implements OnInit {
     @Input() title: string;
     @Input() type: string;
 
+    errorMessage: any;
     service: any;
     movies: Movie[];
 
@@ -43,6 +44,9 @@ export class MovieListComponent implements OnInit {
             }
         }
 
-        this.movies = this.service.getAll();
+        this.service.getAll().subscribe(
+            movies => this.movies = movies,
+            error => this.errorMessage = error
+        );
     }
 }
