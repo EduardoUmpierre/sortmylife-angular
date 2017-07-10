@@ -12,6 +12,7 @@ export class MovieFormComponent implements OnInit {
     editing = false;
     id: number;
     movie: Movie;
+    errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,7 +27,10 @@ export class MovieFormComponent implements OnInit {
             this.movie = new Movie();
         } else {
             this.editing = true;
-            this.movie = Object.assign({}, this.service.getOneById(this.id));
+            this.service.getOneById(this.id).subscribe(
+                movie => this.movie = Object.assign({}, movie),
+                error => this.errorMessage = error
+            )
         }
     }
 

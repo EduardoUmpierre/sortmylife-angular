@@ -18,6 +18,7 @@ export class MovieViewComponent implements OnInit {
     readed: boolean;
     favorite: boolean;
     wantToRead: boolean;
+    errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,10 +32,13 @@ export class MovieViewComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
-            this.movie = this.service.getOneById(this.id);
-            this.readed = this.readedMoviesService.hasOneById(this.id);
-            this.favorite = this.favoriteMoviesService.hasOneById(this.id);
-            this.wantToRead = this.wantToReadMoviesService.hasOneById(this.id);
+            this.service.getOneById(this.id).subscribe(
+                movie => this.movie = movie,
+                error => this.errorMessage = error
+            )
+            // this.readed = this.readedMoviesService.hasOneById(this.id);
+            // this.favorite = this.favoriteMoviesService.hasOneById(this.id);
+            // this.wantToRead = this.wantToReadMoviesService.hasOneById(this.id);
         });
     }
 

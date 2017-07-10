@@ -21,6 +21,13 @@ export class MoviesService {
                         .catch(this.handleError);
     }
 
+    // Retorna todos os filmes
+    getOneById(id: number): Observable<Movie> {
+        return this.http.get('http://localhost:8888/filme/' + id)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
 
@@ -47,16 +54,6 @@ export class MoviesService {
 
     getTotalItems() {
         return this.movies.length;
-    }
-
-    getOneById(id: number) {
-        for (const i in this.movies) {
-            if (this.movies[i].id == id) {
-                return this.movies[i];
-            }
-        }
-
-        this.router.navigate(['inicio']);
     }
 
     add(movies: Movie) {
