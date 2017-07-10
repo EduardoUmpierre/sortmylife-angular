@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-xs-12">
-        <h2>Adicionar livro</h2>
+        <h2>Adicionar filme</h2>
 
         <form action="#" #movieForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="title">Título</label>
-                        <input type="text" name="title" class="form-control" placeholder="Título do livro" id="title" [(ngModel)]="movie.title" required>
+                        <input type="text" name="title" class="form-control" placeholder="Título do filme" id="title" *ngIf="movie" [(ngModel)]="movie.title" required>
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="year">Ano</label>
-                        <input type="number" name="year" class="form-control" placeholder="Ano de lançamento" id="year" min="0" max="2017" [(ngModel)]="movie.year" required>
+                        <input type="number" name="year" class="form-control" placeholder="Ano de lançamento" id="year" min="0" max="2017" *ngIf="movie" [(ngModel)]="movie.year" required>
                     </div>
                 </div>
             </div>
@@ -22,13 +22,13 @@
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="author">Autor</label>
-                        <input type="text" name="author" class="form-control" placeholder="Autor do livro" id="author" [(ngModel)]="movie.author" required>
+                        <input type="text" name="author" class="form-control" placeholder="Autor do filme" id="author" *ngIf="movie" [(ngModel)]="movie.author" required>
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="rating">Classificação</label>
-                        <input type="number" name="rating" class="form-control" placeholder="Número de estrelas" min="0" max="5" id="rating" [(ngModel)]="movie.rating" required>
+                        <input type="number" name="rating" class="form-control" placeholder="Número de estrelas" min="0" max="5" id="rating" *ngIf="movie" [(ngModel)]="movie.rating" required>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="description">Descrição</label>
-                        <textarea name="description" class="form-control" id="description" [(ngModel)]="movie.description" placeholder="Descrição do livro" required></textarea>
+                        <textarea name="description" class="form-control" id="description" *ngIf="movie" [(ngModel)]="movie.description" placeholder="Descrição do filme" required></textarea>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="image">Imagem (url)</label>
-                        <input type="text" name="image" class="form-control" placeholder="http://" id="image" [(ngModel)]="movie.image" required>
+                        <input type="text" name="image" class="form-control" placeholder="http://" id="image" *ngIf="movie" [(ngModel)]="movie.image" required>
                     </div>
                 </div>
             </div>

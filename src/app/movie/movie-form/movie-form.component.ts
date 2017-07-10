@@ -45,13 +45,23 @@ export class MovieFormComponent implements OnInit {
     }
 
     updateMovie() {
-        this.service.update(this.movie);
+        this.service.update(this.movie).subscribe(
+            movie => {
+                console.log(movie);
+            },
+            error => this.errorMessage = error
+        );
 
-        this.router.navigate(['inicio']);
+        this.router.navigate(['filme/' + this.movie.id]);
     }
 
     newMovie() {
-        this.service.add(this.movie);
+        this.service.create(this.movie).subscribe(
+            movie => {
+                console.log(movie);
+            },
+            error => this.errorMessage = error
+        );
 
         this.router.navigate(['inicio']);
     }

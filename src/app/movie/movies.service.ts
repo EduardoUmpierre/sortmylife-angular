@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -24,6 +24,26 @@ export class MoviesService {
     // Retorna todos os filmes
     getOneById(id: number): Observable<Movie> {
         return this.http.get('http://localhost:8888/filme/' + id)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    // Insere um filme
+    create(movie: Movie): Observable<Movie> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8888/filme', JSON.stringify(movie), options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    // Atualiza um filme
+    update(movie: Movie): Observable<Movie> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put('http://localhost:8888/filme/' + movie.id, JSON.stringify(movie), options)
                         .map(this.extractData)
                         .catch(this.handleError);
     }
@@ -54,19 +74,6 @@ export class MoviesService {
 
     getTotalItems() {
         return this.movies.length;
-    }
-
-    add(movies: Movie) {
-        movies.id = this.getTotalItems() + 1;
-        this.movies.unshift(movies);
-    }
-
-    update(movies: Movie) {
-        for (const i in this.movies) {
-            if (this.movies[i].id == movies.id) {
-                this.movies[i] = movies;
-            }
-        }
     }
 
     delete(id: number) {

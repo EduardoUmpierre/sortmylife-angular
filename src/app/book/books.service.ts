@@ -83,9 +83,4 @@ export class BooksService {
     getTotalItems() {
         return this.books.length;
     }
-
-    // add(book: Book) {
-    //     book.id = this.getTotalItems() + 1;
-    //     this.books.unshift(book);
-    // }
 }
