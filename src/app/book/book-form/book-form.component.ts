@@ -45,13 +45,23 @@ export class BookFormComponent implements OnInit {
     }
 
     updateBook() {
-        this.service.update(this.book);
+        this.service.update(this.book).subscribe(
+            book => {
+                console.log(book);
+            },
+            error => this.errorMessage = error
+        );
 
-        this.router.navigate(['inicio']);
+        this.router.navigate(['livro/' + this.book.id]);
     }
 
-    newBook() {
-        this.service.add(this.book);
+    newBook(): void {
+        this.service.create(this.book).subscribe(
+            book => {
+                console.log(book);
+            },
+            error => this.errorMessage = error
+        );
 
         this.router.navigate(['inicio']);
     }

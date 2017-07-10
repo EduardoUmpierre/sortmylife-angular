@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -26,6 +26,34 @@ export class BooksService {
         return this.http.get('http://localhost:8888/livro/' + id)
                         .map(this.extractData)
                         .catch(this.handleError);
+    }
+
+    // Insere um livro
+    create(book: Book): Observable<Book> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8888/livro', JSON.stringify(book), options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    // Atualiza um livro
+    update(book: Book): Observable<Book> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put('http://localhost:8888/livro/' + book.id, JSON.stringify(book), options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    delete(id: number) {
+        for (const i in this.books) {
+            if (this.books[i].id == id) {
+                this.books.splice(parseInt(i, 0), 1);
+            }
+        }
     }
 
     private extractData(res: Response) {
@@ -56,24 +84,8 @@ export class BooksService {
         return this.books.length;
     }
 
-    add(book: Book) {
-        book.id = this.getTotalItems() + 1;
-        this.books.unshift(book);
-    }
-
-    update(book: Book) {
-        for (const i in this.books) {
-            if (this.books[i].id == book.id) {
-                this.books[i] = book;
-            }
-        }
-    }
-
-    delete(id: number) {
-        for (const i in this.books) {
-            if (this.books[i].id == id) {
-                this.books.splice(parseInt(i, 0), 1);
-            }
-        }
-    }
+    // add(book: Book) {
+    //     book.id = this.getTotalItems() + 1;
+    //     this.books.unshift(book);
+    // }
 }
