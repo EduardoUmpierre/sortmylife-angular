@@ -12,6 +12,7 @@ export class BookFormComponent implements OnInit {
     editing = false;
     id: number;
     book: Book;
+    errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,7 +27,10 @@ export class BookFormComponent implements OnInit {
             this.book = new Book();
         } else {
             this.editing = true;
-            this.book = Object.assign({}, this.service.getOneById(this.id));
+            this.service.getOneById(this.id).subscribe(
+                book => this.book = Object.assign({}, book),
+                error => this.errorMessage = error
+            )
         }
     }
 

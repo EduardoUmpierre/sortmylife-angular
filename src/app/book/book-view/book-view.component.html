@@ -1,20 +1,20 @@
 <div class="row book-view__container">
     <div class="col-xs-12 col-sm-4">
-        <div class="book-image" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}"></div>
-        <div class="rating">Nota: {{ book.rating }}/5</div>
+        <div class="book-image" *ngIf="book" [ngStyle]="{ 'background-image': 'url(' + book.image + ')'}"></div>
+        <div class="rating" *ngIf="book">Nota: {{ book.rating }}/5</div>
     </div>
 
     <div class="col-xs-12 col-sm-8">
-        <h3>{{ book.title }}</h3>
-        <h4>{{ book.author }} - {{ book.year }}</h4>
+        <h3 *ngIf="book">{{ book.title }}</h3>
+        <h4 *ngIf="book">{{ book.author }} - {{ book.year }}</h4>
 
-        <p>{{ book.description }}</p>
+        <p *ngIf="book">{{ book.description }}</p>
     </div>
 </div>
 
 <div class="row book-view__button-group">
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a [routerLink]="['/livro/editar', book.id]" class="btn btn-default">Editar</a>
+        <a [routerLink]="['/livro/editar', book.id]" *ngIf="book" class="btn btn-default">Editar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a (click)="delete()" class="btn btn-default">Excluir</a>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<app-book-list title="Livros sugeridos"></app-book-list>
+<!-- <app-book-list title="Livros sugeridos"></app-book-list>
 <app-book-list title="Livros que quero ler" type="wantToRead"></app-book-list>
 <app-book-list title="Livros lidos" type="readed"></app-book-list>
-<app-book-list title="Livros favoritados" type="favorite"></app-book-list>
+<app-book-list title="Livros favoritados" type="favorite"></app-book-list> -->

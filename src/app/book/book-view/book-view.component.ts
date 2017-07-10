@@ -18,6 +18,7 @@ export class BookViewComponent implements OnInit {
     readed: boolean;
     favorite: boolean;
     wantToRead: boolean;
+    errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,10 +32,13 @@ export class BookViewComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
-            this.book = this.service.getOneById(this.id);
-            this.readed = this.readedBooksService.hasOneById(this.id);
-            this.favorite = this.favoriteBooksService.hasOneById(this.id);
-            this.wantToRead = this.wantToReadBooksService.hasOneById(this.id);
+            this.service.getOneById(this.id).subscribe(
+                book => this.book = book,
+                error => this.errorMessage = <any>error
+            );
+            // this.readed = this.readedBooksService.hasOneById(this.id);
+            // this.favorite = this.favoriteBooksService.hasOneById(this.id);
+            // this.wantToRead = this.wantToReadBooksService.hasOneById(this.id);
         });
     }
 

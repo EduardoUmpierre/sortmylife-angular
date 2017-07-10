@@ -21,6 +21,13 @@ export class BooksService {
                         .catch(this.handleError);
     }
 
+    // Retorna um livro
+    getOneById(id: number): Observable<Book> {
+        return this.http.get('http://localhost:8888/livro/' + id)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
 
@@ -49,15 +56,15 @@ export class BooksService {
         return this.books.length;
     }
 
-    getOneById(id: number) {
-        for (const i in this.books) {
-            if (this.books[i].id == id) {
-                return this.books[i];
-            }
-        }
-
-        this.router.navigate(['inicio']);
-    }
+    // getOneById(id: number) {
+    //     for (const i in this.books) {
+    //         if (this.books[i].id == id) {
+    //             return this.books[i];
+    //         }
+    //     }
+    //
+    //     this.router.navigate(['inicio']);
+    // }
 
     add(book: Book) {
         book.id = this.getTotalItems() + 1;
