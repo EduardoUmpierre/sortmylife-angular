@@ -15,6 +15,7 @@ export class BookListComponent implements OnInit {
     @Input() type: string;
 
     service: any;
+    errorMessage: any;
     books: Book[];
 
     constructor (
@@ -43,6 +44,9 @@ export class BookListComponent implements OnInit {
             }
         }
 
-        this.books = this.service.getAll();
+        this.service.getAll().subscribe(
+            books => this.books = books,
+            error => this.errorMessage = <any>error
+        );
     }
 }
