@@ -56,16 +56,6 @@ export class BooksService {
         return this.books.length;
     }
 
-    // getOneById(id: number) {
-    //     for (const i in this.books) {
-    //         if (this.books[i].id == id) {
-    //             return this.books[i];
-    //         }
-    //     }
-    //
-    //     this.router.navigate(['inicio']);
-    // }
-
     add(book: Book) {
         book.id = this.getTotalItems() + 1;
         this.books.unshift(book);
