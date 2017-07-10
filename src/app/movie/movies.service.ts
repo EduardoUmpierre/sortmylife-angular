@@ -48,6 +48,16 @@ export class MoviesService {
                         .catch(this.handleError);
     }
 
+    // Remove um filme
+    delete(id: number): Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.delete('http://localhost:8888/filme/' + id, options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
 
@@ -70,17 +80,5 @@ export class MoviesService {
 
         console.error(errMsg);
         return Observable.throw(errMsg);
-    }
-
-    getTotalItems() {
-        return this.movies.length;
-    }
-
-    delete(id: number) {
-        for (const i in this.movies) {
-            if (this.movies[i].id == id) {
-                this.movies.splice(parseInt(i, 0), 1);
-            }
-        }
     }
 }

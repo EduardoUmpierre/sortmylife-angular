@@ -74,17 +74,23 @@ export class MovieViewComponent implements OnInit {
 
     delete() {
         if (this.confirm()) {
-            this.service.delete(this.id);
-            this.readedMoviesService.delete(this.id);
-            this.favoriteMoviesService.delete(this.id);
-            this.wantToReadMoviesService.delete(this.id);
+            this.service.delete(this.id).subscribe(
+                movie => {
+                    console.log(movie)
+                },
+                error => this.errorMessage = error
+            );
+
+            // this.readedMoviesService.delete(this.id);
+            // this.favoriteMoviesService.delete(this.id);
+            // this.wantToReadMoviesService.delete(this.id);
 
             this.router.navigate(['inicio']);
         }
     }
 
     confirm() {
-        if (!confirm('Você quer deletar o livro "' + this.movie.title + '"?')) {
+        if (!confirm('Você quer deletar o filme "' + this.movie.title + '"?')) {
             return false;
         }
 
