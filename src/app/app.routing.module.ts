@@ -12,8 +12,7 @@ import {SeriesFormComponent} from './series/series-form/series-form.component';
 import {SeriesViewComponent} from './series/series-view/series-view.component';
 
 const appRoute: Routes = [
-    //{path: '', redirectTo: 'inicio', pathMatch: 'full'},
-    {path: '', component: AppComponent},
+    {path: '', redirectTo: 'inicio', pathMatch: 'full'},
     {path: 'inicio', component: HomeComponent},
     {path: 'livro/novo', component: BookFormComponent},
     {path: 'filme/novo', component: MovieFormComponent},
