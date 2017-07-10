@@ -13,13 +13,5 @@ import { MoviesService } from './movie/movies.service';
     styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-    books: Book[];
-    movie: Movie[];
-
-    constructor (private booksService: BooksService,
-                 private moviesService: MoviesService,
-    ) {
-        this.books = this.booksService.getAll();
-        this.movie = this.moviesService.getAll();
-    }
+    
 }
