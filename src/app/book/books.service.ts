@@ -48,12 +48,14 @@ export class BooksService {
                         .catch(this.handleError);
     }
 
-    delete(id: number) {
-        for (const i in this.books) {
-            if (this.books[i].id == id) {
-                this.books.splice(parseInt(i, 0), 1);
-            }
-        }
+    // Remove um livro
+    delete(id: number): Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.delete('http://localhost:8888/livro/' + id, options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
     }
 
     private extractData(res: Response) {
@@ -78,9 +80,5 @@ export class BooksService {
 
         console.error(errMsg);
         return Observable.throw(errMsg);
-    }
-
-    getTotalItems() {
-        return this.books.length;
     }
 }

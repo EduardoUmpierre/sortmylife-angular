@@ -74,10 +74,16 @@ export class BookViewComponent implements OnInit {
 
     delete() {
         if (this.confirm()) {
-            this.service.delete(this.id);
-            this.readedBooksService.delete(this.id);
-            this.favoriteBooksService.delete(this.id);
-            this.wantToReadBooksService.delete(this.id);
+            this.service.delete(this.id).subscribe(
+                book => {
+                    console.log(book);
+                },
+                error => this.errorMessage = error
+            );
+            
+            // this.readedBooksService.delete(this.id);
+            // this.favoriteBooksService.delete(this.id);
+            // this.wantToReadBooksService.delete(this.id);
 
             this.router.navigate(['inicio']);
         }
