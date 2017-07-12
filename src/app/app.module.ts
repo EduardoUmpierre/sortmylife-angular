@@ -23,13 +23,16 @@ import {FavoriteMoviesService} from './movie/favorite-movies.service';
 import {ReadedMoviesService} from './movie/readed-movies.service';
 import {WantToReadMoviesService} from './movie/want-to-read-movies.service';
 import {MoviesService} from './movie/movies.service';
-import {SeriesService} from "./series/series.service";
-import {WantToReadSeriesService} from "./series/want-to-read-series.service";
-import {ReadedSeriesService} from "./series/readed-series.service";
-import {FavoriteSeriesService} from "./series/favorite-series.service";
-import {SeriesViewComponent} from "./series/series-view/series-view.component";
-import {SeriesFormComponent} from "./series/series-form/series-form.component";
-import {SeriesListComponent} from "./series/series-list/series-list.component";
+import {SeriesService} from './series/series.service';
+import {WantToReadSeriesService} from './series/want-to-read-series.service';
+import {ReadedSeriesService} from './series/readed-series.service';
+import {FavoriteSeriesService} from './series/favorite-series.service';
+import {SeriesViewComponent} from './series/series-view/series-view.component';
+import {SeriesFormComponent} from './series/series-form/series-form.component';
+import {SeriesListComponent} from './series/series-list/series-list.component';
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './guards/auth.guard';
+import {AuthService} from './login/auth.service';
 
 @NgModule({
     declarations: [
@@ -39,6 +42,7 @@ import {SeriesListComponent} from "./series/series-list/series-list.component";
         BookFormComponent,
         BookViewComponent,
         HomeComponent,
+        LoginComponent,
         MovieListComponent,
         MovieFormComponent,
         MovieViewComponent,
@@ -53,6 +57,8 @@ import {SeriesListComponent} from "./series/series-list/series-list.component";
         AppRoutingModule
     ],
     providers: [
+        AuthGuard,
+        AuthService,
         BooksService,
         MoviesService,
         SeriesService,

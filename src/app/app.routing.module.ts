@@ -10,19 +10,22 @@ import {MovieFormComponent} from './movie/movie-form/movie-form.component';
 import {MovieViewComponent} from './movie/movie-view/movie-view.component';
 import {SeriesFormComponent} from './series/series-form/series-form.component';
 import {SeriesViewComponent} from './series/series-view/series-view.component';
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './guards/auth.guard';
 
 const appRoute: Routes = [
-    {path: '', redirectTo: 'inicio', pathMatch: 'full'},
-    {path: 'inicio', component: HomeComponent},
-    {path: 'livro/novo', component: BookFormComponent},
-    {path: 'filme/novo', component: MovieFormComponent},
-    {path: 'series/novo', component: SeriesFormComponent},
-    {path: 'livro/editar/:id', component: BookFormComponent},
-    {path: 'filme/editar/:id', component: MovieFormComponent},
-    {path: 'series/editar/:id', component: SeriesFormComponent},
-    {path: 'livro/:id', component: BookViewComponent},
-    {path: 'filme/:id', component: MovieViewComponent},
-    {path: 'series/:id', component: SeriesViewComponent}
+    {path: '', redirectTo: 'inicio', pathMatch: 'full', canActivate: [AuthGuard]},
+    { path: 'login', component: LoginComponent },
+    {path: 'inicio', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: 'livro/novo', component: BookFormComponent, canActivate: [AuthGuard]},
+    {path: 'filme/novo', component: MovieFormComponent, canActivate: [AuthGuard]},
+    {path: 'series/novo', component: SeriesFormComponent, canActivate: [AuthGuard]},
+    {path: 'livro/editar/:id', component: BookFormComponent, canActivate: [AuthGuard]},
+    {path: 'filme/editar/:id', component: MovieFormComponent, canActivate: [AuthGuard]},
+    {path: 'series/editar/:id', component: SeriesFormComponent, canActivate: [AuthGuard]},
+    {path: 'livro/:id', component: BookViewComponent, canActivate: [AuthGuard]},
+    {path: 'filme/:id', component: MovieViewComponent, canActivate: [AuthGuard]},
+    {path: 'series/:id', component: SeriesViewComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
