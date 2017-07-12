@@ -12,6 +12,7 @@ export class SeriesFormComponent implements OnInit {
     editing = false;
     id: number;
     series: Series;
+    errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,7 +27,10 @@ export class SeriesFormComponent implements OnInit {
             this.series = new Series();
         } else {
             this.editing = true;
-            this.series = Object.assign({}, this.service.getOneById(this.id));
+            this.service.getOneById(this.id).subscribe(
+                series => this.series = Object.assign({}, series),
+                error => this.errorMessage = error
+            );
         }
     }
 
@@ -41,13 +45,23 @@ export class SeriesFormComponent implements OnInit {
     }
 
     updateSeries() {
-        this.service.update(this.series);
+        this.service.update(this.series).subscribe(
+            series => {
+                console.log(series);
+            },
+            error => this.errorMessage = error
+        );
 
-        this.router.navigate(['inicio']);
+        this.router.navigate(['livro/' + this.series.id]);
     }
 
-    newSeries() {
-        this.service.add(this.series);
+    newSeries(): void {
+        this.service.create(this.series).subscribe(
+            series => {
+                console.log(series);
+            },
+            error => this.errorMessage = error
+        );
 
         this.router.navigate(['inicio']);
     }

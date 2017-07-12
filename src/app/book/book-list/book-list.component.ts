@@ -48,5 +48,6 @@ export class BookListComponent implements OnInit {
             books => this.books = books,
             error => this.errorMessage = <any>error
         );
+
     }
 }

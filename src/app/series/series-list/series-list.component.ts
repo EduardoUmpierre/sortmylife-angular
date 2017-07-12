@@ -14,6 +14,7 @@ export class SeriesListComponent implements OnInit {
     @Input() title: string;
     @Input() type: string;
 
+    errorMessage: any;
     service: any;
     series: Series[];
 
@@ -43,6 +44,9 @@ export class SeriesListComponent implements OnInit {
             }
         }
 
-        this.series = this.service.getAll();
+        this.service.getAll().subscribe(
+            series => this.series = series,
+            error => this.errorMessage = <any>error
+        );
     }
 }

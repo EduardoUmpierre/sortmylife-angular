@@ -14,6 +14,11 @@ export class BooksService {
 
     constructor(private router: Router, private http: Http) {}
 
+    getBooks() {
+        console.log(this.books);
+        return this.books;
+    }
+
     // Retorna todos os livros
     getAll(): Observable<Book[]> {
         return this.http.get('http://localhost:8888/livros')
@@ -30,8 +35,8 @@ export class BooksService {
 
     // Insere um livro
     create(book: Book): Observable<Book> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
         return this.http.post('http://localhost:8888/livro', JSON.stringify(book), options)
                         .map(this.extractData)
@@ -40,8 +45,8 @@ export class BooksService {
 
     // Atualiza um livro
     update(book: Book): Observable<Book> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
         return this.http.put('http://localhost:8888/livro/' + book.id, JSON.stringify(book), options)
                         .map(this.extractData)
@@ -50,8 +55,8 @@ export class BooksService {
 
     // Remove um livro
     delete(id: number): Observable<any> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
         return this.http.delete('http://localhost:8888/livro/' + id, options)
                         .map(this.extractData)
@@ -59,7 +64,7 @@ export class BooksService {
     }
 
     private extractData(res: Response) {
-        let body = res.json();
+        const body = res.json();
 
         console.log(body);
 

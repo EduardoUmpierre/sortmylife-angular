@@ -18,6 +18,7 @@ export class SeriesViewComponent implements OnInit {
     readed: boolean;
     favorite: boolean;
     wantToRead: boolean;
+    private errorMessage: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,10 +32,10 @@ export class SeriesViewComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
-            this.series = this.service.getOneById(this.id);
-            this.readed = this.readedSeriesService.hasOneById(this.id);
-            this.favorite = this.favoriteSeriesService.hasOneById(this.id);
-            this.wantToRead = this.wantToReadSeriesService.hasOneById(this.id);
+            this.service.getOneById(this.id).subscribe(
+                series => this.series = series,
+                error => this.errorMessage = <any>error
+            );
         });
     }
 
@@ -70,17 +71,18 @@ export class SeriesViewComponent implements OnInit {
 
     delete() {
         if (this.confirm()) {
-            this.service.delete(this.id);
-            this.readedSeriesService.delete(this.id);
-            this.favoriteSeriesService.delete(this.id);
-            this.wantToReadSeriesService.delete(this.id);
-
+            this.service.delete(this.id).subscribe(
+                book => {
+                    console.log(book);
+                },
+                error => this.errorMessage = error
+            );
             this.router.navigate(['inicio']);
         }
     }
 
     confirm() {
-        if (!confirm('Você quer deletar o livro "' + this.series.title + '"?')) {
+        if (!confirm('Você quer deletar a série "' + this.series.title + '"?')) {
             return false;
         }
 

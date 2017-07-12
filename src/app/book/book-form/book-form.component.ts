@@ -30,7 +30,7 @@ export class BookFormComponent implements OnInit {
             this.service.getOneById(this.id).subscribe(
                 book => this.book = Object.assign({}, book),
                 error => this.errorMessage = error
-            )
+            );
         }
     }
 
