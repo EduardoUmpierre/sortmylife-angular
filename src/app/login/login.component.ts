@@ -10,15 +10,20 @@ import { Usuario } from './usuario';
 })
 export class LoginComponent implements OnInit {
 
-	private usuario: Usuario = new Usuario();
+    usuario: Usuario[] = [];
+    private usuarioAutenticado = false;
+    errorMessage: any;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
- 	fazerLogin(){
- 		this.authService.fazerLogin(this.usuario);
- 	}
+    /*login() {
+ 		this.authService.login(usuario.email, usuario.password)
+            .subscribe(
+
+            );
+    }*/
 
 }
