@@ -7,39 +7,27 @@ import { AuthService } from './../login/auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
 
-  constructor(
-  	private authService: AuthService,
-  	private router: Router
-  ) { }
+	constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-  	route: ActivatedRouteSnapshot,
-  	state: RouterStateSnapshot
-  ) : Observable<boolean> | boolean {
-	console.log("AuthGuard Active");
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean {
+		console.log("AuthGuard Active");
 
-	return this.verificarAcesso();
+		return this.verificarAcesso();
+	}
 
-  }
+	private verificarAcesso() {
+		if (localStorage.getItem('currentUser')) {
+			return true;
+		}
 
-  private verificarAcesso(){
+		this.router.navigate(['login']);
 
-	  if(this.authService.usuarioEstaAutenticado()){
-		  return true;
-	  }
+		return false;
+	}
 
-	  this.router.navigate(['/login']);
+	canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean{
+		console.log("canLoad: Verificando se o usuário pode carregar o módulo");
 
-	  return false;
-
-  }
-
-  canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean{
-
-	  console.log("canLoad: Verificando se o usuário pode carregar o módulo");
-
-	  return this.verificarAcesso();
-
-  }
-
+		return this.verificarAcesso();
+	}
 }

@@ -14,19 +14,19 @@
 
 <div class="row movie-view__button-group">
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a [routerLink]="['/filme/editar', movie.id]" *ngIf="movie" class="btn btn-default">Editar</a>
+        <a *ngIf="movie && currentUser && currentUser.role == 'role_user'" [routerLink]="['/filme/editar', movie.id]" class="btn btn-default">Editar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="delete()" class="btn btn-default">Excluir</a>
+        <a *ngIf="currentUser && currentUser.role == 'role_user'" (click)="delete()" class="btn btn-default">Excluir</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleReaded()" class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
+        <a (click)="toggleReaded()" disabled class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleWantToRead()" class="btn" [ngClass]="{'btn-primary': wantToRead, 'btn-default': !wantToRead}">Quero ler</a>
+        <a (click)="toggleWantToRead()" disabled class="btn" [ngClass]="{'btn-primary': wantToRead, 'btn-default': !wantToRead}">Quero ler</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleFavorite()" class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
+        <a (click)="toggleFavorite()" disabled class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a class="btn btn-default" disabled>Comentários</a>

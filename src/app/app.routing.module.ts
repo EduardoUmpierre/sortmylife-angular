@@ -11,11 +11,13 @@ import {MovieViewComponent} from './movie/movie-view/movie-view.component';
 import {SeriesFormComponent} from './series/series-form/series-form.component';
 import {SeriesViewComponent} from './series/series-view/series-view.component';
 import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './guards/auth.guard';
 
 const appRoute: Routes = [
     {path: '', redirectTo: 'inicio', pathMatch: 'full', canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent },
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
     {path: 'inicio', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'livro/novo', component: BookFormComponent, canActivate: [AuthGuard]},
     {path: 'filme/novo', component: MovieFormComponent, canActivate: [AuthGuard]},

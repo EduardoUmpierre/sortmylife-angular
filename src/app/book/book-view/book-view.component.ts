@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'app/book/book';
+import { Usuario } from 'app/login/usuario';
 
 import { BooksService } from '../books.service';
 import { ReadedBooksService } from '../readed-books.service';
@@ -19,57 +20,44 @@ export class BookViewComponent implements OnInit {
     favorite: boolean;
     wantToRead: boolean;
     errorMessage: any;
+    currentUser: any;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private service: BooksService,
-        private readedBooksService: ReadedBooksService,
-        private favoriteBooksService: FavoriteBooksService,
-        private wantToReadBooksService: WantToReadBooksService
-    ) { }
+        private readedBooksService: ReadedBooksService
+    ) {
+    }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
             this.service.getOneById(this.id).subscribe(
-                book => this.book = book,
+                book => {
+                    if (Object.keys(book).length <= 0) {
+                        this.router.navigate(['/inicio']);
+                    }
+
+                    this.readedBooksService.getOneByUserAndBook(this.currentUser.id, this.id).subscribe(
+                        readed => this.readed = Object.keys(readed).length > 0 ? true : false,
+                        error => console.log(error)
+                    )
+
+                    this.book = book;
+                },
                 error => this.errorMessage = <any>error
             );
-            // this.readed = this.readedBooksService.hasOneById(this.id);
-            // this.favorite = this.favoriteBooksService.hasOneById(this.id);
-            // this.wantToRead = this.wantToReadBooksService.hasOneById(this.id);
         });
     }
 
     toggleReaded() {
-        if (this.readed) {
-            this.readedBooksService.delete(this.id);
-        } else {
-            this.readedBooksService.add(this.book);
-        }
-
-        this.readed = !this.readed;
-    }
-
-    toggleFavorite() {
-        if (this.favorite) {
-            this.favoriteBooksService.delete(this.id);
-        } else {
-            this.favoriteBooksService.add(this.book);
-        }
-
-        this.favorite = !this.favorite;
-    }
-
-    toggleWantToRead() {
-        if (this.wantToRead) {
-            this.wantToReadBooksService.delete(this.id);
-        } else {
-            this.wantToReadBooksService.add(this.book);
-        }
-
-        this.wantToRead = !this.wantToRead;
+        this.readedBooksService.setOneByUserAndBook(this.currentUser.id, this.id).subscribe(
+            readed => this.readed = !this.readed,
+            error => console.log(error)
+        )
     }
 
     delete() {

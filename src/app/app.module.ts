@@ -23,6 +23,7 @@ import {FavoriteMoviesService} from './movie/favorite-movies.service';
 import {ReadedMoviesService} from './movie/readed-movies.service';
 import {WantToReadMoviesService} from './movie/want-to-read-movies.service';
 import {MoviesService} from './movie/movies.service';
+import {UsuarioService} from './login/usuario.service';
 import {SeriesService} from './series/series.service';
 import {WantToReadSeriesService} from './series/want-to-read-series.service';
 import {ReadedSeriesService} from './series/readed-series.service';
@@ -33,6 +34,7 @@ import {SeriesListComponent} from './series/series-list/series-list.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './login/auth.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +51,7 @@ import {AuthService} from './login/auth.service';
         SeriesListComponent,
         SeriesFormComponent,
         SeriesViewComponent,
+        RegisterComponent,
     ],
     imports: [
         BrowserModule,
@@ -62,6 +65,7 @@ import {AuthService} from './login/auth.service';
         BooksService,
         MoviesService,
         SeriesService,
+        UsuarioService,
         FavoriteBooksService,
         ReadedBooksService,
         WantToReadBooksService,
@@ -74,4 +78,5 @@ import {AuthService} from './login/auth.service';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

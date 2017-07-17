@@ -1,32 +1,32 @@
 <div class="row series-view__container">
     <div class="col-xs-12 col-sm-4">
-        <div class="series-image" [ngStyle]="{ 'background-image': 'url(' + series.image + ')'}"></div>
-        <div class="rating">Nota: {{ series.rating }}/5</div>
+        <div class="series-image" *ngIf="series" [ngStyle]="{ 'background-image': 'url(' + series.image + ')'}"></div>
+        <div class="rating" *ngIf="series">Nota: {{ series.rating }}/5</div>
     </div>
 
     <div class="col-xs-12 col-sm-8">
-        <h3>{{ series.title }}</h3>
-        <h4>{{ series.author }} - {{ series.year }}</h4>
+        <h3 *ngIf="series">{{ series.title }}</h3>
+        <h4 *ngIf="series">{{ series.author }} - {{ series.year }}</h4>
 
-        <p>{{ series.description }}</p>
+        <p *ngIf="series">{{ series.description }}</p>
     </div>
 </div>
 
 <div class="row series-view__button-group">
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a [routerLink]="['/livro/editar', series.id]" class="btn btn-default">Editar</a>
+        <a *ngIf="series && currentUser && currentUser.role == 'role_admin'" [routerLink]="['/livro/editar', series.id]" class="btn btn-default">Editar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="delete()" class="btn btn-default">Excluir</a>
+        <a *ngIf="currentUser && currentUser.role == 'role_admin'" (click)="delete()" class="btn btn-default">Excluir</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleReaded()" class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
+        <a (click)="toggleReaded()" disabled class="btn" [ngClass]="{'btn-primary': readed, 'btn-default': !readed}">Já li</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleWantToRead()" class="btn" [ngClass]="{'btn-primary': wantToRead, 'btn-default': !wantToRead}">Quero ler</a>
+        <a (click)="toggleWantToRead()" disabled class="btn" [ngClass]="{'btn-primary': wantToRead, 'btn-default': !wantToRead}">Quero ler</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
-        <a (click)="toggleFavorite()" class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
+        <a (click)="toggleFavorite()" disabled class="btn" [ngClass]="{'btn-primary': favorite, 'btn-default': !favorite}">Favoritar</a>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">
         <a class="btn btn-default" disabled>Comentários</a>
@@ -34,6 +34,6 @@
 </div>
 
 <app-series-list title="Séries sugeridas"></app-series-list>
-<app-series-list title="Séries que quero ler" type="wantToRead"></app-series-list>
-<app-series-list title="Séries lidas" type="readed"></app-series-list>
-<app-series-list title="Séries favoritadas" type="favorite"></app-series-list>
+<!--<app-series-list title="Séries que quero ler" type="wantToRead"></app-series-list>-->
+<!--<app-series-list title="Séries lidas" type="readed"></app-series-list>-->
+<!--<app-series-list title="Séries favoritadas" type="favorite"></app-series-list>-->

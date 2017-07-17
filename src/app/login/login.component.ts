@@ -1,29 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Usuario } from './usuario';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    usuario: any = {};
+    loading = false;
 
-    usuario: Usuario[] = [];
-    private usuarioAutenticado = false;
-    errorMessage: any;
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private authService: AuthService
+    ) {}
 
-  constructor(private authService: AuthService) { }
+    ngOnInit() {
+        this.authService.logout();
+    }
 
-  ngOnInit() {
-  }
+    login() {
+        this.loading = true;
 
-    /*login() {
- 		this.authService.login(usuario.email, usuario.password)
+        console.log(this.usuario);
+
+        this.authService.login(this.usuario.username, this.usuario.password)
             .subscribe(
-
+                data => {
+                    this.router.navigate(['/']);
+                },
+                error => {
+                    console.log(error);
+                    this.loading = false;
+                }
             );
-    }*/
+    }
 
 }

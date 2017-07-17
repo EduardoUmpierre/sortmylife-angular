@@ -1,8 +1,11 @@
 <header id="header">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <h1>{{ title }}</h1>
+            </div>
+            <div class="col-xs-6">
+                <div class="pull-right" *ngIf="currentUser">Olá, {{ currentUser.name }}</div>
             </div>
         </div>
 
@@ -10,8 +13,12 @@
             <div class="col-xs-12">
                 <ul>
                     <li><a routerLink="inicio">Início</a></li>
-                    <li><a routerLink="livro/novo">Adicionar livro</a></li>
-                    <li><a routerLink="filme/novo">Adicionar filme</a></li>
+                    <li><a *ngIf="currentUser && currentUser.role == 'role_admin'" routerLink="livro/novo">Adicionar livro</a></li>
+                    <li><a *ngIf="currentUser && currentUser.role == 'role_admin'" routerLink="filme/novo">Adicionar filme</a></li>
+
+                    <li class="pull-right" *ngIf="currentUser">
+                        <a (click)="logout()">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
